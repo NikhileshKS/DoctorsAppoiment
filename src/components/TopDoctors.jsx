@@ -33,7 +33,7 @@ const TopDoctors = () => {
         More
     </button>
     </div>
-  )
+)
 }
 
 export default TopDoctors

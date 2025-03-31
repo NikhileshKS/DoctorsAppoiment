@@ -1,11 +1,14 @@
-/* eslint-disable no-undef */
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faTelegram, faWhatsapp, faFacebook, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
 import { assets } from '../assets/assets'
 
 const Footer = () => {
+  const navigate = useNavigate()
+
   return (
     <div className='md:mx-10 cursor-pointer'>
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-10 text-sm'>
@@ -47,19 +50,19 @@ const Footer = () => {
 
           {/* Social Media Icons */}
           <div className='flex gap-4 mt-4'>
-            <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
+            <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
               <FontAwesomeIcon icon={faTelegram} size="2x" className="text-blue-400 hover:text-blue-600 transition-colors" />
             </a>
-            <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <FontAwesomeIcon icon={faWhatsapp} size="2x" className="text-green-500 hover:text-green-700 transition-colors" />
             </a>
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FontAwesomeIcon icon={faFacebook} size="2x" className="text-blue-600 hover:text-blue-800 transition-colors" />
             </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <FontAwesomeIcon icon={faTwitter} size="2x" className="text-blue-400 hover:text-blue-600 transition-colors" />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <FontAwesomeIcon icon={faInstagram} size="2x" className="text-pink-400 hover:text-pink-800 transition-colors" />
             </a>
           </div>
