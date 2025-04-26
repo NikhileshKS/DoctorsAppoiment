@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="217" height="46" viewBox="0 0 217 46" fill="none">
+  <!-- Logo elements -->
+  <circle cx="23" cy="23" r="21" stroke="blue" stroke-width="2" fill="none"/>
+  <path d="M23 11 V35 M11 23 H35" stroke="RED" stroke-width="7" stroke-linecap="round"/>
+  
+  <!-- Double-struck text effect with red interior -->
+  <g font-family="Times, serif" font-size="28">
+    
+    <!-- Overlay for double-struck effect -->
+    <text x="53" y="30" fill="none" stroke="blue" stroke-width="1">MYDOCTOR</text>
+  </g>
+</svg>
