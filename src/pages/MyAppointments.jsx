@@ -21,21 +21,21 @@ const MyAppointments = () => {
         id: 1,
         date: "2023-06-15",
         time: "10:00 AM",
-        service: "Dental Checkup",
-        professional: "Dr. Smith",
+        service: "General Physician Consultation",
+        professional: "Dr. Chirag Deshpande",
         duration: "30 mins",
         status: "confirmed",
-        notes: "Regular 6-month checkup"
+        notes: "Regular checkup"
       },
       {
         id: 2,
         date: "2023-06-20",
         time: "2:30 PM",
-        service: "Teeth Cleaning",
-        professional: "Dr. Johnson",
+        service: "Gynecologist Consultation",
+        professional: "Dr. Natasha Larson",
         duration: "45 mins",
         status: "confirmed",
-        notes: ""
+        notes: "Annual examination"
       }
     ],
     past: [
@@ -43,21 +43,21 @@ const MyAppointments = () => {
         id: 3,
         date: "2023-05-10",
         time: "11:15 AM",
-        service: "Filling",
-        professional: "Dr. Smith",
+        service: "Dermatologist Consultation",
+        professional: "Dr. Siddharth Patel",
         duration: "1 hour",
         status: "completed",
-        notes: "Cavity in lower left molar"
+        notes: "Skin allergy follow-up"
       },
       {
         id: 4,
         date: "2023-04-05",
         time: "9:00 AM",
-        service: "Root Canal",
-        professional: "Dr. Williams",
+        service: "Pediatric Consultation",
+        professional: "Dr. Jameson",
         duration: "2 hours",
         status: "completed",
-        notes: "Follow-up appointment needed"
+        notes: "Vaccination and growth check"
       }
     ],
     cancelled: [
@@ -65,8 +65,8 @@ const MyAppointments = () => {
         id: 5,
         date: "2023-05-28",
         time: "3:00 PM",
-        service: "Wisdom Tooth Extraction",
-        professional: "Dr. Johnson",
+        service: "Neurologist Consultation",
+        professional: "Dr. Jennifer Garcia",
         duration: "1.5 hours",
         status: "cancelled",
         notes: "Patient rescheduled"
@@ -80,25 +80,50 @@ const MyAppointments = () => {
     "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM"
   ];
 
-  // Available services
+  // Available services with corresponding professionals
   const services = [
-    "Dental Checkup",
-    "Teeth Cleaning",
-    "Filling",
-    "Root Canal",
-    "Wisdom Tooth Extraction",
-    "Teeth Whitening",
-    "Braces Consultation"
+    "General Physician Consultation",
+    "Gynecologist Consultation",
+    "Dermatologist Consultation",
+    "Pediatric Consultation",
+    "Neurologist Consultation",
+    "Gastroenterologist Consultation"
   ];
 
-  // Available professionals
-  const professionals = [
-    "Dr. Smith",
-    "Dr. Johnson",
-    "Dr. Williams",
-    "Dr. Brown",
-    "Dr. Davis"
-  ];
+  // Professionals by specialty
+  const professionalsByService = {
+    "General Physician Consultation": [
+      "Dr. Chirag Deshpande",
+      "Dr. Christopher",
+      "Dr. Chloe Evans"
+    ],
+    "Gynecologist Consultation": [
+      "Dr. Natasha Larson",
+      "Dr. Sharan",
+      "Dr. Ajith"
+    ],
+    "Dermatologist Consultation": [
+      "Dr. Siddharth Patel",
+      "Dr. Aira Sharma",
+      "Dr. Amekia Hill"
+    ],
+    "Pediatric Consultation": [
+      "Dr. Jameson",
+      "Dr. Jeffrey King"
+    ],
+    "Neurologist Consultation": [
+      "Dr. Jennifer Garcia",
+      "Dr. Andrew Williams"
+    ],
+    "Gastroenterologist Consultation": [
+      "Dr. Vasundhara Molhotra"
+    ]
+  };
+
+  // Get professionals based on selected service
+  const getProfessionalsForService = (service) => {
+    return professionalsByService[service] || [];
+  };
 
   // Handle booking a new appointment
   const handleBookAppointment = (e) => {
@@ -363,7 +388,13 @@ const MyAppointments = () => {
                           id="service"
                           name="service"
                           value={newAppointment.service}
-                          onChange={(e) => setNewAppointment({ ...newAppointment, service: e.target.value })}
+                          onChange={(e) => {
+                            setNewAppointment({ 
+                              ...newAppointment, 
+                              service: e.target.value,
+                              professional: "" // Reset professional when service changes
+                            });
+                          }}
                           className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                           required
                         >
@@ -384,9 +415,10 @@ const MyAppointments = () => {
                           onChange={(e) => setNewAppointment({ ...newAppointment, professional: e.target.value })}
                           className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                           required
+                          disabled={!newAppointment.service}
                         >
                           <option value="">Select a professional</option>
-                          {professionals.map(professional => (
+                          {getProfessionalsForService(newAppointment.service).map(professional => (
                             <option key={professional} value={professional}>{professional}</option>
                           ))}
                         </select>
